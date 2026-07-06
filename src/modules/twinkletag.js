@@ -294,9 +294,12 @@ Twinkle.tag.callback = function twinkletagCallback() {
 		if (Twinkle.tag.canRemove) {
 			// Look for existing maintenance tags in the lead section and put them in array
 
-			// All tags are HTML table elements that are direct children of .mw-parser-output,
+			// All tags are HTML table elements that are direct children of .mw-parser-output
+			// (legacy parser) or the first <section> child (Parsoid),
 			// except when they are within {{multiple issues}}
-			$('.mw-parser-output').children().each((i, e) => {
+			const $parserOutput = $('.mw-parser-output');
+			const $leadSection = $parserOutput.children('section[data-mw-section-id="0"]');
+			($leadSection.length ? $leadSection : $parserOutput).children().each((i, e) => {
 
 				// break out on encountering the first heading, which means we are no
 				// longer in the lead section
