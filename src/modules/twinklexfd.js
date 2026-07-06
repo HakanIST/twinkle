@@ -480,7 +480,10 @@ Twinkle.xfd.callback.change_category = function twinklexfdCallbackChangeCategory
 				] : [
 					{ value: 'standard', label: 'Standard', selected: true },
 					{ value: 'sidebar', label: 'Sidebar/infobox', selected: $('.infobox').length },
-					{ value: 'inline', label: 'Inline template', selected: $('.mw-parser-output > p .Inline-Template').length },
+					{ value: 'inline', label: 'Inline template', selected: (function() {
+						var $lead = $('.mw-parser-output').children('section[data-mw-section-id="0"]');
+						return ($lead.length ? $lead : $('.mw-parser-output')).find('p .Inline-Template').length;
+					}()) },
 					{ value: 'tiny', label: 'Tiny inline' },
 					{ value: 'disabled', label: 'Disabled' }
 				]
