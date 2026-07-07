@@ -299,7 +299,8 @@ Twinkle.tag.callback = function twinkletagCallback() {
 			// except when they are within {{multiple issues}}
 			const $parserOutput = $('.mw-parser-output');
 			const $leadSection = $parserOutput.children('section[data-mw-section-id="0"]');
-			($leadSection.length ? $leadSection : $parserOutput).children().each((i, e) => {
+			const $scanTarget = $leadSection.length ? $leadSection : $parserOutput;
+			$scanTarget.children().each((i, e) => {
 
 				// break out on encountering the first heading, which means we are no
 				// longer in the lead section

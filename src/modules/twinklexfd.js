@@ -482,7 +482,8 @@ Twinkle.xfd.callback.change_category = function twinklexfdCallbackChangeCategory
 					{ value: 'sidebar', label: 'Sidebar/infobox', selected: $('.infobox').length },
 					{ value: 'inline', label: 'Inline template', selected: (function() {
 						var $lead = $('.mw-parser-output').children('section[data-mw-section-id="0"]');
-						return ($lead.length ? $lead : $('.mw-parser-output')).find('p .Inline-Template').length;
+						var $scanTarget = $lead.length ? $lead : $('.mw-parser-output');
+						return $scanTarget.find('p .Inline-Template').length;
 					}()) },
 					{ value: 'tiny', label: 'Tiny inline' },
 					{ value: 'disabled', label: 'Disabled' }
