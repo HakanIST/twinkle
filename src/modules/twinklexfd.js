@@ -480,11 +480,13 @@ Twinkle.xfd.callback.change_category = function twinklexfdCallbackChangeCategory
 				] : [
 					{ value: 'standard', label: 'Standard', selected: true },
 					{ value: 'sidebar', label: 'Sidebar/infobox', selected: $('.infobox').length },
-					{ value: 'inline', label: 'Inline template', selected: (function() {
-						var $lead = $('.mw-parser-output').children('section[data-mw-section-id="0"]');
-						var $scanTarget = $lead.length ? $lead : $('.mw-parser-output');
-						return $scanTarget.find('p .Inline-Template').length;
-					}()) },
+					{ value: 'inline', label: 'Inline template', selected: (() => {
+						// TODO: clean up after legacy parser is permanently replaced with Parsoid
+						const $oldParser = $('.mw-parser-output p .Inline-Template');
+						const $newParser = $('.mw-parser-output section[data-mw-section-id="0"] p .Inline-Template');
+						const $scanTarget = $newParser.length ? $newParser : $oldParser;
+						return $scanTarget.length;
+					})() },
 					{ value: 'tiny', label: 'Tiny inline' },
 					{ value: 'disabled', label: 'Disabled' }
 				]
