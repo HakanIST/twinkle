@@ -482,7 +482,7 @@ Twinkle.xfd.callback.change_category = function twinklexfdCallbackChangeCategory
 					{ value: 'sidebar', label: 'Sidebar/infobox', selected: $('.infobox').length },
 					{ value: 'inline', label: 'Inline template', selected: (() => {
 						// TODO: clean up after legacy parser is permanently replaced with Parsoid
-						const $oldParser = $('.mw-parser-output p .Inline-Template');
+						const $oldParser = $('.mw-parser-output > p .Inline-Template');
 						const $newParser = $('.mw-parser-output section[data-mw-section-id="0"] p .Inline-Template');
 						const $scanTarget = $newParser.length ? $newParser : $oldParser;
 						return $scanTarget.length;
